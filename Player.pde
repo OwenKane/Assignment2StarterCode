@@ -13,7 +13,7 @@ class Player
     
   Player()
   {
-    pos = new PVector(width / 2, height / 2);
+    pos = new PVector(0, 0);
   }
   
   Player(int index, color colour, char up, char down, char left, char right, char start, char button1, char button2)
@@ -56,11 +56,11 @@ class Player
     }
     if (checkKey(left))
     {
-      pos.x -= 1;
+      pos.x += 1;
     }    
     if (checkKey(right))
     {
-      pos.x += 1;
+      pos.x -= 1;
     }
     if (checkKey(start))
     {
@@ -79,7 +79,9 @@ class Player
   void display()
   {    
     stroke(colour);
-    fill(colour);    
+    fill(colour);  
     rect(pos.x, pos.y, 20, 20);
+    //println("X is" + pos.x);
+    //println("Y is" +pos.y);
   }  
 }

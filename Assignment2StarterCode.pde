@@ -1,27 +1,67 @@
-/*
-    DIT OOP Assignment 2 Starter Code
-    =================================
-    
-    Loads player properties from an xml file
-    See: https://github.com/skooter500/DT228-OOP 
-*/
-
 ArrayList<Player> players = new ArrayList<Player>();
 boolean[] keys = new boolean[526];
 
+
+float i = 180;
+float w = 300;
+float h = 40;
+boolean tip;
+float temp = 0;
+
+
 void setup()
 {
-  size(500, 500);
+  size(800, 600);
   setUpPlayerControllers();
 }
-//Test 
+
 void draw()
 {
+  background(0);
+
+  pushMatrix();
+  translate(width/2, height/2);
+  rotate(radians(i));  
+  fill(0);
+  rectMode(CENTER);
+  rect(0, 0, w, h);
+  fill(0, 255, 0);
+  rect(0, 10, 10, h);
+  rectMode(CORNER);
+  
   for(Player player:players)
   {
     player.update();
     player.display();
+    player.pos.y = 20;
+    
+    if(player.pos.x < 0)
+    {
+      temp = -1 * (player.pos.x / 250);
+      println("temp is" + temp);
+      i = (i + .1) + temp;
+      println("x is < 0" + player.pos.x);
+    }
+    else
+    {
+      //tip = true;
+    }
+    
+    if(player.pos.x > 0)
+    {
+      temp =(player.pos.x / 250);
+      i = (i - .1) - temp;
+      println("x is > 0" + player.pos.x);
+    }
+    else
+    {
+      //tip = false;
+    }
+      
   }
+    
+    popMatrix();
+  
 }
 
 void keyPressed()
@@ -76,8 +116,8 @@ void setUpPlayerControllers()
             , color(random(0, 255), random(0, 255), random(0, 255))
             , playerXML);
     int x = (i + 1) * gap;
-    p.pos.x = x;
-    p.pos.y = 300;
-   players.add(p);         
+    p.pos.x = 0;
+    p.pos.y = 20;
+   players.add(p);       
   }
-} //Test comment
+}
