@@ -10,10 +10,12 @@ class Player
   char button2;
   int index;
   color colour;
+  PImage pirate;
     
   Player()
   {
     pos = new PVector(0, 0);
+    pirate = loadImage("pirate.png"); 
   }
   
   Player(int index, color colour, char up, char down, char left, char right, char start, char button1, char button2)
@@ -54,11 +56,11 @@ class Player
     {
       pos.y += 1;
     }
-    if (checkKey(left))
+    if (checkKey(left) && pos.x < 140)
     {
       pos.x += 1;
     }    
-    if (checkKey(right))
+    if (checkKey(right) && pos.x > -150)
     {
       pos.x -= 1;
     }
@@ -80,7 +82,9 @@ class Player
   {    
     stroke(colour);
     fill(colour);  
-    rect(pos.x, pos.y, 20, 20);
+    //rect(pos.x, pos.y, 20, 20);
+    scale(1.0, -1.0);
+    image(pirate, pos.x, pos.y - 80);
     //println("X is" + pos.x);
     //println("Y is" +pos.y);
   }  

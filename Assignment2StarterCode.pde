@@ -1,34 +1,41 @@
 ArrayList<Player> players = new ArrayList<Player>();
 boolean[] keys = new boolean[526];
 
-
+Ship ship;
 float i = 180;
 float w = 300;
 float h = 40;
 boolean tip;
 float temp = 0;
-
+PImage sea;
 
 void setup()
 {
   size(800, 600);
   setUpPlayerControllers();
+  ship = new Ship();
+  sea = loadImage("sea1.png"); 
 }
 
 void draw()
 {
-  background(0);
+  background(255);
 
   pushMatrix();
   translate(width/2, height/2);
   rotate(radians(i));  
-  fill(0);
-  rectMode(CENTER);
-  rect(0, 0, w, h);
-  fill(0, 255, 0);
-  rect(0, 10, 10, h);
-  rectMode(CORNER);
+  fill(255);
   
+  ship.display();
+  
+  rectMode(CENTER);
+  //fill(0);
+  //rect(0, 0, w, h);//ship "skeleton"
+  //fill(0, 255, 0);
+  //rect(0, 10, 10, h);
+  
+  
+  rectMode(CORNER); 
   for(Player player:players)
   {
     player.update();
@@ -42,10 +49,6 @@ void draw()
       i = (i + .1) + temp;
       println("x is < 0" + player.pos.x);
     }
-    else
-    {
-      //tip = true;
-    }
     
     if(player.pos.x > 0)
     {
@@ -53,15 +56,10 @@ void draw()
       i = (i - .1) - temp;
       println("x is > 0" + player.pos.x);
     }
-    else
-    {
-      //tip = false;
-    }
       
   }
-    
-    popMatrix();
-  
+  popMatrix();
+  image(sea, 0, 345);
 }
 
 void keyPressed()
