@@ -2,64 +2,98 @@ ArrayList<Player> players = new ArrayList<Player>();
 boolean[] keys = new boolean[526];
 
 Ship ship;
+Screens screens;
 float i = 180;
 float w = 300;
+float j = 0;
 float h = 40;
 boolean tip;
 float temp = 0;
 PImage sea;
+PImage sky;
 
 void setup()
 {
   size(800, 600);
   setUpPlayerControllers();
   ship = new Ship();
-  sea = loadImage("sea1.png"); 
+  screens = new Screens();
+  sea = loadImage("sea1.png");
+  sky = loadImage("sky2.png");  
 }
 
 void draw()
 {
-  background(255);
-
-  pushMatrix();
-  translate(width/2, height/2);
-  rotate(radians(i));  
-  fill(255);
-  
-  ship.display();
-  
-  rectMode(CENTER);
-  //fill(0);
-  //rect(0, 0, w, h);//ship "skeleton"
-  //fill(0, 255, 0);
-  //rect(0, 10, 10, h);
-  
-  
-  rectMode(CORNER); 
-  for(Player player:players)
+  if(screens.start == false)
   {
-    player.update();
-    player.display();
-    player.pos.y = 20;
-    
-    if(player.pos.x < 0)
-    {
-      temp = -1 * (player.pos.x / 250);
-      println("temp is" + temp);
-      i = (i + .1) + temp;
-      println("x is < 0" + player.pos.x);
-    }
-    
-    if(player.pos.x > 0)
-    {
-      temp =(player.pos.x / 250);
-      i = (i - .1) - temp;
-      println("x is > 0" + player.pos.x);
-    }
-      
+    screens.display();
+    tip = false;
   }
-  popMatrix();
-  image(sea, 0, 345);
+  else
+  {  
+    background(255);
+    image(sky, 0, 0);
+    
+    pushMatrix();
+    translate(width/2, height/2);
+    rotate(radians(i));  
+    fill(255);
+    
+    ship.display();
+    
+    rectMode(CORNER); 
+    for(Player player:players)
+    {
+      player.update();
+      player.display();
+      player.pos.y = 20;
+      
+      if(player.pos.x < 0 && tip == false)//right tripping
+      {
+        temp = -1 * (player.pos.x / 250);
+        i = (i + .1) + temp;
+        //println("x is < 0" + player.pos.x);
+      }
+      
+      if(player.pos.x > 0 && tip == false)//Left tipping
+      {
+        temp =(player.pos.x / 250);
+        i = (i - .1) - temp;
+        //println("x is > 0" + player.pos.x);
+      }
+      
+      if( i < 140 || i > 220)
+      {
+        tip = true;
+        screens.start = false;
+        i = 180;
+        player.pos.x = 0;
+      }
+      
+      
+      rect(width/2, j, 20, 20);  
+      if(dist(player.pos.x, player.pos.y, width/2, j) < 20)
+      {
+        tip = true;
+      }
+      
+      println( dist(player.pos.x, player.pos.y, width/2, j));
+        
+    }
+    popMatrix();
+    image(sea, 0, 345);
+    
+   
+    rect(width/2, j, 20, 20);
+    j++;
+    
+    
+  }
+}
+
+void mouseClicked()
+{
+  screens.mouseClicked();
 }
 
 void keyPressed()
