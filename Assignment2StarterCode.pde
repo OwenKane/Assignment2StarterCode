@@ -5,10 +5,13 @@ Ship ship;
 Screens screens;
 float i = 180;
 float w = 300;
-float j = 0;
+float barrely = -300;
+float barrelx = 0;
 float h = 40;
 boolean tip;
 float temp = 0;
+float disttempy = 0;
+float disttempx = 0;
 PImage sea;
 PImage sky;
 
@@ -27,7 +30,6 @@ void draw()
   if(screens.start == false)
   {
     screens.display();
-    tip = false;
   }
   else
   {  
@@ -52,14 +54,12 @@ void draw()
       {
         temp = -1 * (player.pos.x / 250);
         i = (i + .1) + temp;
-        //println("x is < 0" + player.pos.x);
       }
       
       if(player.pos.x > 0 && tip == false)//Left tipping
       {
         temp =(player.pos.x / 250);
         i = (i - .1) - temp;
-        //println("x is > 0" + player.pos.x);
       }
       
       if( i < 140 || i > 220)
@@ -69,23 +69,34 @@ void draw()
         i = 180;
         player.pos.x = 0;
       }
-      
-      
-      rect(width/2, j, 20, 20);  
-      if(dist(player.pos.x, player.pos.y, width/2, j) < 20)
+ 
+       /*
+      if(dist(player.pos.y, j) < 20)
       {
         tip = true;
       }
+      */
+      //println( dist(player.pos.x, player.pos.y, barrelx, barrely - 65) );//Dist from barrel  
       
-      println( dist(player.pos.x, player.pos.y, width/2, j));
-        
+      if( disttempy < 20 && disttempx < 20 )
+      {
+        println("HIT");
+      }
+      
+      disttempy = (player.pos.y - barrely) - 65;
+      disttempx = (player.pos.x - barrelx);
+      //println(disttempx);
+      
+      
     }
+    popMatrix();
+    pushMatrix();
+    translate(width/2, height/2);
+    rect(barrelx, barrely, 20, 20);//Test for barrel
     popMatrix();
     image(sea, 0, 345);
     
-   
-    rect(width/2, j, 20, 20);
-    j++;
+    barrely++;
     
     
   }

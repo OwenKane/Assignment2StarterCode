@@ -14,8 +14,8 @@ class Screens
     if( start == false)
     {
       image(splash, 0, 0);
+      tip = false;
     }
-    //println("In display");
   }
   
   void mouseClicked()
