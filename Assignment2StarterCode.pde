@@ -69,26 +69,12 @@ void draw()
         i = 180;
         player.pos.x = 0;
       }
- 
-       /*
-      if(dist(player.pos.y, j) < 20)
-      {
-        tip = true;
-      }
-      */
-      //println( dist(player.pos.x, player.pos.y, barrelx, barrely - 65) );//Dist from barrel  
-      
-      if( disttempy < 20 && disttempx < 20 )
-      {
-        println("HIT");
-      }
       
       disttempy = (player.pos.y - barrely) - 65;
       disttempx = (player.pos.x - barrelx);
-      //println(disttempx);
-      
       
     }
+    
     popMatrix();
     pushMatrix();
     translate(width/2, height/2);
