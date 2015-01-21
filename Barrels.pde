@@ -5,15 +5,23 @@ class Barrels
     
   }
   
-  void display()
+  void update()
   { 
-     if( disttempy < 40 && disttempy > -1 && disttempx < 0 && disttempx > -40 )
-     {
-       println("HIT");
-       barrely = -300;
-     }
-      
-     println(disttempx);
+    for(Player player:players)
+    {    
+    /*
+       if( abs(barrely) < 90 && abs(barrely) > 30 && disttempx < 40 && disttempx > 20 )
+       {
+         println("HIT");
+         barrelx = -100;
+       }
+    */
+       //println("Barrely is"+ barrely);
+       //println("dissttemp x is"+ disttempx);
+        
+       barrelx++;
+       
+    }
   }
   
 }

@@ -3,10 +3,12 @@ boolean[] keys = new boolean[526];
 
 Ship ship;
 Screens screens;
+Barrels barrels;
+
 float i = 180;
 float w = 300;
-float barrely = -300;
-float barrelx = 0;
+float barrely = -40;
+float barrelx = -100;
 float h = 40;
 boolean tip;
 float temp = 0;
@@ -15,14 +17,20 @@ float disttempx = 0;
 PImage sea;
 PImage sky;
 
+int savedTime;
+int totalTime = 5000;
+
 void setup()
 {
   size(800, 600);
   setUpPlayerControllers();
   ship = new Ship();
   screens = new Screens();
+  barrels = new Barrels();
   sea = loadImage("sea1.png");
-  sky = loadImage("sky2.png");  
+  sky = loadImage("sky2.png");
+  
+  savedTime = millis();  
 }
 
 void draw()
@@ -70,8 +78,18 @@ void draw()
         player.pos.x = 0;
       }
       
-      disttempy = (player.pos.y - barrely) - 65;
-      disttempx = (player.pos.x - barrelx);
+      disttempx = player.pos.x - barrelx;
+      
+      barrels.update();
+      
+      
+      int passedTime = millis() - savedTime;
+      // Has five seconds passed?
+      if (passedTime > totalTime) {
+      println( " 5 seconds have passed! " );
+      i = i + 20;
+      background(random(255)); // Color a new background
+      savedTime = millis(); // Save the current time to restart the timer!
       
     }
     
@@ -81,11 +99,8 @@ void draw()
     rect(barrelx, barrely, 20, 20);//Test for barrel
     popMatrix();
     image(sea, 0, 345);
-    
-    barrely++;
-    
-    
   }
+}
 }
 
 void mouseClicked()
