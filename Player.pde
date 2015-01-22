@@ -71,10 +71,12 @@ class Player
     if (checkKey(button1))
     {
       println("Player " + index + " button 1");
+      harpoon.right();
     }
     if (checkKey(button2))
     {
       println("Player " + index + " butt2");
+      harpoon.left();
     }    
   }
   
