@@ -4,36 +4,43 @@ class Harpoon
   PImage harpoonR;
   float hx;
   float hy;
+  boolean set;
+  boolean fired;
+  boolean left;
+  boolean right;
   
   Harpoon()
   {
     harpoonL = loadImage("harpoon.png");
     harpoonR = loadImage("harpoon2.png");
     
-    for(Player player:players)
-    {
-      hx = player.pos.x;
-      hy = hx = player.pos.y ;
-    }
   }
  
   void right()
   {
-    for(Player player:players)
+    if(fired == true)
     {
-      image(harpoonR, hx, hy);
-      hx = hx + 2;
+      for(Player player:players)
+      {
+        image(harpoonR, hx, hy);
+        hx = hx + 2;
+        println(hx);
+      }
     }
   }
   
   
   void left()
   {
-    for(Player player:players)
+    if(fired == true)
     {
-      image(harpoonL, hx, hy);
-      hx = hx - 2;
-    }
+      for(Player player:players)
+      {
+        image(harpoonL, hx, hy);
+        hx = hx - 2;
+        println(hx);
+      }
+    } 
   }
   
 }

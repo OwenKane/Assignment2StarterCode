@@ -6,6 +6,8 @@ Screens screens;
 Tip tip;
 Harpoon harpoon;
 
+int left;
+int right;
 float i = 180;
 float w = 300;
 float barrely = -40;
@@ -57,16 +59,21 @@ void draw()
     {
       player.update();
       player.display();
-      player.pos.y = 20;
-      
-      tip.update();
-      
-      disttempx = player.pos.x - barrelx;
-     
+      player.pos.y = 20;   
     }
     
-    popMatrix();
-    pushMatrix();
+    if(left == 1)
+    {
+      harpoon.hx = harpoon.hx - 2;
+      image(harpoon.harpoonL, harpoon.hx, harpoon.hy);
+    }
+    left = 1;
+    if(right == 1)
+    {
+      harpoon.hx = harpoon.hx + 2;
+      image(harpoon.harpoonR, harpoon.hx, harpoon.hy);
+    }
+  
     translate(width/2, height/2);
     popMatrix();
     image(sea, 0, 345);

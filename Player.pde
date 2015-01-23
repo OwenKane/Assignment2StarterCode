@@ -71,11 +71,35 @@ class Player
     if (checkKey(button1))
     {
       println("Player " + index + " button 1");
-      harpoon.right();
+      
+      if(harpoon.set == false)
+      {
+        for(Player player:players)
+        {
+          harpoon.hx = player.pos.x;
+          harpoon.hy = harpoon.hx = player.pos.y ;
+        }
+        harpoon.fired = true;
+        harpoon.set = true;
+      }   
+      right = 1;   
+      harpoon.right();      
     }
     if (checkKey(button2))
     {
-      println("Player " + index + " butt2");
+      println("Player " + index + " butt2");    
+     
+      if(harpoon.set == false)
+      {
+        for(Player player:players)
+        {
+          harpoon.hx = player.pos.x;
+          harpoon.hy = harpoon.hx = player.pos.y ;
+        }
+        harpoon.fired = true;
+        harpoon.set = true;
+      }
+      left = 1;
       harpoon.left();
     }    
   }
