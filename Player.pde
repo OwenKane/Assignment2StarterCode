@@ -70,37 +70,13 @@ class Player
     }
     if (checkKey(button1))
     {
-      println("Player " + index + " button 1");
-      
-      if(harpoon.set == false)
-      {
-        for(Player player:players)
-        {
-          harpoon.hx = player.pos.x;
-          harpoon.hy = harpoon.hx = player.pos.y ;
-        }
-        harpoon.fired = true;
-        harpoon.set = true;
-      }   
-      right = 1;   
-      harpoon.right();      
+      //println("Player " + index + " button 1");       
+      harpoon.left();       
     }
     if (checkKey(button2))
     {
-      println("Player " + index + " butt2");    
-     
-      if(harpoon.set == false)
-      {
-        for(Player player:players)
-        {
-          harpoon.hx = player.pos.x;
-          harpoon.hy = harpoon.hx = player.pos.y ;
-        }
-        harpoon.fired = true;
-        harpoon.set = true;
-      }
-      left = 1;
-      harpoon.left();
+      //println("Player " + index + " butt2");    
+      harpoon.right();      
     }    
   }
   
@@ -108,10 +84,7 @@ class Player
   {    
     stroke(colour);
     fill(colour);  
-    //rect(pos.x, pos.y, 20, 20);
     scale(1.0, -1.0);
     image(pirate, pos.x, pos.y - 80);
-    //println("X is" + pos.x);
-    //println("Y is" +pos.y);
   }  
 }

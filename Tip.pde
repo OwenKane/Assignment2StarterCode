@@ -5,8 +5,11 @@ class Tip
   PImage monster;
   PImage monster2;
   float side;
-  boolean wave;
+  boolean attack;
   boolean wait;
+  boolean attright;
+  boolean attleft;
+  int passedTime;
   
   Tip()
   {
@@ -20,13 +23,13 @@ class Tip
   {
     for(Player player:players)
     {
-      if(player.pos.x < 0 && tipping == false && wave == false)//right tripping
+      if(player.pos.x < 0 && tipping == false && attack == false)//right tripping
         {
           temp = -1 * (player.pos.x / 250);
           i = (i + .1) + temp;
         }
         
-        if(player.pos.x > 0 && tipping == false && wave == false)//Left tipping
+        if(player.pos.x > 0 && tipping == false && attack == false)//Left tipping
         {
           temp =(player.pos.x / 250);
           i = (i - .1) - temp;
@@ -35,13 +38,13 @@ class Tip
         if( i < 140 || i > 220)
         {
           tipping = true;
-          screens.start = false;
+          end.go = true;
           i = 180;
           player.pos.x = 0;
         }
      }
      
-     int passedTime = millis() - savedTime;
+     passedTime = millis() - savedTime;
    
      if (passedTime > totalTime) 
      {
@@ -49,27 +52,39 @@ class Tip
        savedTime = millis(); // Save the current time to restart the timer!
        if( wait == false)
        {
-         wave = true;
+         attack = true;
          wait = true;
        }
        else if(wait == true)
        {
-         wave = false;
+         attack = false;
          wait = false;
-       }
-       println("Wave is "+ wave);   
-       println("Wait is "+ wait);   
+         attleft = false;
+         attright = false;
+       } 
      }  
-        
-     if(side < 1 && wave == true)
+            
+     if(side < 1 && attright == true)
      {
-       //i = i + .2;
+       i = i + .3;
        image(monster, -210, -55);
      }
-     else if(side > 1 && wave == true)
+     else if(side > 1 && attleft == true)
      {
-       //i = i - .2;
+       i = i - .3;
        image(monster2, 130, -55);
      }
+          
+     if(side < 1 && attack == true)
+     {
+       attright = true;
+     }
+     else if(side > 1 && attack == true)
+     {
+       attleft = true;
+     }
+         
+     println("attright is " + attright);
+     println("attleft is " + attleft);
   }
 }

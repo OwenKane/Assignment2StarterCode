@@ -2,12 +2,13 @@ ArrayList<Player> players = new ArrayList<Player>();
 boolean[] keys = new boolean[526];
 
 Ship ship;
-Screens screens;
+Start start;
 Tip tip;
 Harpoon harpoon;
+End end;
 
-int left;
-int right;
+boolean left;
+boolean right;
 float i = 180;
 float w = 300;
 float barrely = -40;
@@ -27,9 +28,10 @@ void setup()
   setUpPlayerControllers();
   
   ship = new Ship();
-  screens = new Screens();
+  start = new Start();
   tip = new Tip();
   harpoon = new Harpoon();
+  end = new End();
   
   sea = loadImage("sea1.png");
   sky = loadImage("sky2.png");
@@ -38,9 +40,13 @@ void setup()
 
 void draw()
 {
-  if(screens.start == false)
+  if(start.go == false)
   {
-    screens.display();
+    start.display();
+  }
+  else if(end. go == true)
+  {
+    end.display();
   }
   else
   {  
@@ -53,6 +59,7 @@ void draw()
     fill(255);
     
     ship.display();
+    tip.update();
     
     rectMode(CORNER); 
     for(Player player:players)
@@ -62,28 +69,30 @@ void draw()
       player.pos.y = 20;   
     }
     
-    if(left == 1)
-    {
-      harpoon.hx = harpoon.hx - 2;
-      image(harpoon.harpoonL, harpoon.hx, harpoon.hy);
-    }
-    left = 1;
-    if(right == 1)
+    if(left == true)
     {
       harpoon.hx = harpoon.hx + 2;
       image(harpoon.harpoonR, harpoon.hx, harpoon.hy);
     }
-  
+    
+    if(right == true)
+    {
+      harpoon.hx = harpoon.hx - 2;
+      image(harpoon.harpoonL, harpoon.hx, harpoon.hy);
+    }
+ 
     translate(width/2, height/2);
     popMatrix();
     image(sea, 0, 345);
+    harpoon.disappear();
   }
 }
 
 
 void mouseClicked()
 {
-  screens.mouseClicked();
+  start.mouseClicked();
+  end.mouseClicked();
 }
 
 void keyPressed()

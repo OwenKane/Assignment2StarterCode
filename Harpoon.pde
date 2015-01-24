@@ -6,41 +6,92 @@ class Harpoon
   float hy;
   boolean set;
   boolean fired;
-  boolean left;
-  boolean right;
+
   
   Harpoon()
   {
     harpoonL = loadImage("harpoon.png");
-    harpoonR = loadImage("harpoon2.png");
-    
+    harpoonR = loadImage("harpoon2.png");    
   }
  
   void right()
   {
-    if(fired == true)
+    if(fired == false)
     {
       for(Player player:players)
       {
-        image(harpoonR, hx, hy);
-        hx = hx + 2;
-        println(hx);
+        harpoon.hx = player.pos.x;
+        harpoon.hy = player.pos.y - 60;
+        harpoon.fired = true;
+        harpoon.set = true;
+        right = true;
+      }    
+    }
+  }  
+  
+  void left()
+  {
+    for(Player player:players)
+    {
+      if(fired == false)
+      {
+        harpoon.hx = player.pos.x;
+        harpoon.hy = player.pos.y - 60;
+        harpoon.fired = true;
+        harpoon.set = true;
+        left = true;    
       }
     }
   }
   
-  
-  void left()
+  void disappear()
   {
-    if(fired == true)
+    if( harpoon.hx > 130)
     {
-      for(Player player:players)
+      fired = false;
+      left = false;
+      println("In the 1st if");
+      if( tip.attleft == true )
       {
-        image(harpoonL, hx, hy);
-        hx = hx - 2;
-        println(hx);
+        tip.attleft = false;
+        tip.attack = false;
+        println("In the final if attleft is " + tip.attleft);
+        tip.passedTime = 5000;
       }
-    } 
+      
+    }
+    
+    if( harpoon.hx < -155)
+    {
+      fired = false;
+      right = false;
+      println("In the 1st if");
+      if(tip.attright == true)
+      {
+        tip.attright = false;
+        tip.attack = false;
+        println("In the final if attright is " + tip.attright);
+        tip.passedTime = 5000;
+      }
+      
+    }
   }
-  
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
