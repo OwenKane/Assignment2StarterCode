@@ -58,15 +58,30 @@ class Player
     }
     if (checkKey(left) && pos.x < 140)
     {
-      pos.x += 1;
+      if(move == true)
+      {
+        pos.x += 1;
+      } 
+      else
+      {
+        option -= 1;
+      }
     }    
     if (checkKey(right) && pos.x > -150)
     {
-      pos.x -= 1;
+      if(move == true)
+      {   
+        pos.x -= 1;
+      }
+      else
+      {
+        option += 1;
+      }
     }
     if (checkKey(start))
     {
       println("Player " + index + " start");
+      //start.go = true;
     }
     if (checkKey(button1))
     {

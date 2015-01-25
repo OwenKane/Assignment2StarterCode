@@ -50,12 +50,10 @@ class Harpoon
     {
       fired = false;
       left = false;
-      println("In the 1st if");
       if( tip.attleft == true )
       {
         tip.attleft = false;
         tip.attack = false;
-        println("In the final if attleft is " + tip.attleft);
         tip.passedTime = 5000;
       }
       
@@ -65,33 +63,14 @@ class Harpoon
     {
       fired = false;
       right = false;
-      println("In the 1st if");
       if(tip.attright == true)
       {
         tip.attright = false;
         tip.attack = false;
-        println("In the final if attright is " + tip.attright);
         tip.passedTime = 5000;
       }
       
     }
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

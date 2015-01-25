@@ -6,6 +6,7 @@ Start start;
 Tip tip;
 Harpoon harpoon;
 End end;
+Score score;
 
 boolean left;
 boolean right;
@@ -20,6 +21,9 @@ float disttempy = 0;
 float disttempx = 0;
 PImage sea;
 PImage sky;
+int points;
+boolean move;
+int option;
 
 
 void setup()
@@ -32,9 +36,12 @@ void setup()
   tip = new Tip();
   harpoon = new Harpoon();
   end = new End();
+  score = new Score();
   
   sea = loadImage("sea1.png");
   sky = loadImage("sky2.png");
+  points = 0;
+  option = 0;
   
 }
 
@@ -42,16 +49,36 @@ void draw()
 {
   if(start.go == false)
   {
-    start.display();
+    frameRate(4);
+    start.display();    
+    for(Player player:players)
+    {
+      player.update();
+    }
+
+    if(option < 0)
+    {
+      option = 0;
+    }
+    else if(option > 2)
+    {
+      option = 2;
+    }
+    
   }
   else if(end. go == true)
   {
     end.display();
+    points = 0;
   }
   else
   {  
+    frameRate(60);
     background(255);
     image(sky, 0, 0);
+    fill(0);
+    textSize(32);
+    text("Score: " + points, 10, 30);
     
     pushMatrix();
     translate(width/2, height/2);
@@ -85,12 +112,14 @@ void draw()
     popMatrix();
     image(sea, 0, 345);
     harpoon.disappear();
+    score.update();
   }
 }
 
 
 void mouseClicked()
 {
+  
   start.mouseClicked();
   end.mouseClicked();
 }

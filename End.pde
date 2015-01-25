@@ -13,6 +13,7 @@ class End extends Start
     {
       image(screen, 0, 0);
       tipping = false;
+      move = false;
     }
   }
   

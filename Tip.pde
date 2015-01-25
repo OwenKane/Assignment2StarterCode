@@ -83,8 +83,5 @@ class Tip
      {
        attleft = true;
      }
-         
-     println("attright is " + attright);
-     println("attleft is " + attleft);
   }
 }
