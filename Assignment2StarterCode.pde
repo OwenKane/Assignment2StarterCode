@@ -2,11 +2,12 @@ ArrayList<Player> players = new ArrayList<Player>();
 boolean[] keys = new boolean[526];
 
 Ship ship;
-Start start;
+StartS startS;
 Tip tip;
 Harpoon harpoon;
 End end;
 Score score;
+Instructions instructions;
 
 boolean left;
 boolean right;
@@ -32,11 +33,12 @@ void setup()
   setUpPlayerControllers();
   
   ship = new Ship();
-  start = new Start();
+  startS = new StartS();
   tip = new Tip();
   harpoon = new Harpoon();
   end = new End();
   score = new Score();
+  instructions = new Instructions();
   
   sea = loadImage("sea1.png");
   sky = loadImage("sky2.png");
@@ -47,14 +49,16 @@ void setup()
 
 void draw()
 {
-  if(start.go == false)
+  if(startS.go == false)
   {
-    frameRate(4);
-    start.display();    
+    frameRate(10);
+    startS.display();    
     for(Player player:players)
     {
       player.update();
     }
+
+    println(option);
 
     if(option < 0)
     {
@@ -71,7 +75,12 @@ void draw()
     end.display();
     points = 0;
   }
-  else
+  else if(option == 1)
+  {
+    instructions.go = true;
+    instructions.display();
+  }
+  else if(option == 0 || option == 2)
   {  
     frameRate(60);
     background(255);
@@ -119,8 +128,6 @@ void draw()
 
 void mouseClicked()
 {
-  
-  start.mouseClicked();
   end.mouseClicked();
 }
 

@@ -1,4 +1,4 @@
-class End extends Start
+class End extends StartS
 {
   
   End()

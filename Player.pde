@@ -81,7 +81,7 @@ class Player
     if (checkKey(start))
     {
       println("Player " + index + " start");
-      //start.go = true;
+      startS.plzwork();
     }
     if (checkKey(button1))
     {
