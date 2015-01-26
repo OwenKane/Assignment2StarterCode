@@ -1,6 +1,5 @@
 class End extends StartS
-{
-  
+{  
   End()
   {
     screen = loadImage("end.png");    

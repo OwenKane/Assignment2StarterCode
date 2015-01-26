@@ -7,7 +7,7 @@ Tip tip;
 Harpoon harpoon;
 End end;
 Score score;
-Instructions instructions;
+Instruct instruct;
 
 boolean left;
 boolean right;
@@ -38,7 +38,7 @@ void setup()
   harpoon = new Harpoon();
   end = new End();
   score = new Score();
-  instructions = new Instructions();
+  instruct = new Instruct();
   
   sea = loadImage("sea1.png");
   sky = loadImage("sky2.png");
@@ -77,8 +77,8 @@ void draw()
   }
   else if(option == 1)
   {
-    instructions.go = true;
-    instructions.display();
+    instruct.go = true;
+    instruct.display();
   }
   else if(option == 0 || option == 2)
   {  

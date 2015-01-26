@@ -80,17 +80,24 @@ class Player
     }
     if (checkKey(start))
     {
-      println("Player " + index + " start");
-      startS.plzwork();
+      println("WHY");
+      if(instruct.go == false)
+      {
+        startS.plzwork();
+        println("huge oppssss");           
+      }
+      else
+      {
+        println("opp2");
+        instruct.go = false;
+      }       
     }
     if (checkKey(button1))
-    {
-      //println("Player " + index + " button 1");       
+    {      
       harpoon.left();       
     }
     if (checkKey(button2))
-    {
-      //println("Player " + index + " butt2");    
+    {   
       harpoon.right();      
     }    
   }
