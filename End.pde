@@ -11,6 +11,10 @@ class End extends StartS
     if( go == true)
     {
       image(screen, 0, 0);
+      
+      textSize(70);
+      text("Score: "+ points, width/2 - 150, height / 2);
+      
       tipping = false;
       move = false;
     }
@@ -18,7 +22,10 @@ class End extends StartS
   
   void mouseClicked()
   {
+    points = 0;
     go = false;   
+    move = true;
+    tip.savedTime = millis(); 
   }
   
 }

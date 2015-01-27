@@ -10,17 +10,17 @@ class Instruct extends StartS
   { 
     if( go == true)
     {
-      println("here");
       image(screen, 0, 0);
-    }
-    else
-    {
-      println("oops1");
-      //startS.go = false;
-      //startS.display();
-      go = false; 
-      option = 0;
+      tipping = false;
+      move = false;
     }
   }
+   
+  void mouseClicked()
+  {
+    go = false;
+    option = 0;   
+  }    
+    
     
 }

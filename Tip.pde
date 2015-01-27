@@ -10,6 +10,7 @@ class Tip
   boolean attright;
   boolean attleft;
   int passedTime;
+  float diff;
   
   Tip()
   {
@@ -21,6 +22,15 @@ class Tip
   
   void update()
   {
+    if(option == 0)
+    { 
+      diff = .1;
+    }
+    else if(option == 2);
+    {
+      diff = .2;
+    }
+    
     if(startS.go == true)
     {
       for(Player player:players)
@@ -28,13 +38,13 @@ class Tip
         if(player.pos.x < 0 && tipping == false && attack == false)//right tripping
           {
             temp = -1 * (player.pos.x / 250);
-            i = (i + .1) + temp;
+            i = (i + diff) + temp;
           }
           
           if(player.pos.x > 0 && tipping == false && attack == false)//Left tipping
           {
             temp =(player.pos.x / 250);
-            i = (i - .1) - temp;
+            i = (i - diff) - temp;
           }
           
           if( i < 140 || i > 220)

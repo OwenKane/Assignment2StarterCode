@@ -58,8 +58,6 @@ void draw()
       player.update();
     }
 
-    println(option);
-
     if(option < 0)
     {
       option = 0;
@@ -73,7 +71,6 @@ void draw()
   else if(end. go == true)
   {
     end.display();
-    points = 0;
   }
   else if(option == 1)
   {
@@ -128,6 +125,7 @@ void draw()
 
 void mouseClicked()
 {
+  instruct.mouseClicked();
   end.mouseClicked();
 }
 

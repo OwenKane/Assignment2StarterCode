@@ -80,17 +80,18 @@ class Player
     }
     if (checkKey(start))
     {
-      println("WHY");
+      
+      if(instruct.go == true)
+      {       
+        instruct.go = false;
+        option = 0;
+      }
+      
       if(instruct.go == false)
       {
-        startS.plzwork();
-        println("huge oppssss");           
+        startS.plzwork();      
       }
-      else
-      {
-        println("opp2");
-        instruct.go = false;
-      }       
+      
     }
     if (checkKey(button1))
     {      
