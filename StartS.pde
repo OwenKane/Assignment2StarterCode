@@ -58,7 +58,7 @@ class StartS
     }
   }
  
-  void plzwork()
+  void restart()
   {
     go = true;
     move = true;

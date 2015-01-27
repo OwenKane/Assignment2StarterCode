@@ -15,7 +15,7 @@ class Tip
   Tip()
   {
     savedTime = millis();  
-    totalTime = 5000;
+    totalTime = 3000;
     monster = loadImage("monster.png");
     monster2 = loadImage("monster2.png");
   }
@@ -28,7 +28,7 @@ class Tip
     }
     else if(option == 2);
     {
-      diff = .2;
+      diff = .3;
     }
     
     if(startS.go == true)
@@ -53,6 +53,7 @@ class Tip
             end.go = true;
             i = 180;
             player.pos.x = 0;
+            savedTime = millis();
           }
        }
        
@@ -78,12 +79,12 @@ class Tip
               
        if(side < 1 && attright == true)
        {
-         i = i + .3;
+         i = i + .4;
          image(monster, -210, -55);
        }
        else if(side > 1 && attleft == true)
        {
-         i = i - .3;
+         i = i - .4;
          image(monster2, 130, -55);
        }
             

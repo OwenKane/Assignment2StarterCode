@@ -89,7 +89,16 @@ class Player
       
       if(instruct.go == false)
       {
-        startS.plzwork();      
+        startS.restart();    
+      }
+      
+      if(end.go == true)
+      {
+        points = 0;
+        end.go = false;   
+        tip.savedTime = millis(); 
+        //startS.restart();    
+        startS.go = false;        
       }
       
     }

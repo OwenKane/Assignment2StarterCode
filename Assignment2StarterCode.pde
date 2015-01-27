@@ -13,8 +13,6 @@ boolean left;
 boolean right;
 float i = 180;
 float w = 300;
-float barrely = -40;
-float barrelx = -100;
 float h = 40;
 boolean tipping;
 float temp = 0;
@@ -120,13 +118,6 @@ void draw()
     harpoon.disappear();
     score.update();
   }
-}
-
-
-void mouseClicked()
-{
-  instruct.mouseClicked();
-  end.mouseClicked();
 }
 
 void keyPressed()

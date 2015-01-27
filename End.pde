@@ -10,22 +10,18 @@ class End extends StartS
   { 
     if( go == true)
     {
-      image(screen, 0, 0);
-      
+      image(screen, 0, 0);      
       textSize(70);
+      fill(255,0,0);
       text("Score: "+ points, width/2 - 150, height / 2);
       
       tipping = false;
       move = false;
+      
+      for(Player player:players)
+      {
+        player.update();
+      }
     }
-  }
-  
-  void mouseClicked()
-  {
-    points = 0;
-    go = false;   
-    move = true;
-    tip.savedTime = millis(); 
-  }
-  
+  }  
 }

@@ -13,14 +13,11 @@ class Instruct extends StartS
       image(screen, 0, 0);
       tipping = false;
       move = false;
+      
+      for(Player player:players)
+      {
+        player.update();
+      }
     }
-  }
-   
-  void mouseClicked()
-  {
-    go = false;
-    option = 0;   
-  }    
-    
-    
+  }        
 }
