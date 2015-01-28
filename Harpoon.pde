@@ -46,15 +46,15 @@ class Harpoon
   
   void disappear()
   {
-    if( harpoon.hx > 130)
+    if( harpoon.hx > 130)//checking to see if the harppon has reached the edge of the boat
     {
       fired = false;
       left = false;
-      if( tip.attleft == true )
+      if( tip.attleft == true )//See if the harpoon is hitting the monster
       {
         tip.attleft = false;
         tip.attack = false;
-        tip.passedTime = 5000;
+        tip.passedTime = 5000;//reset the attack timer
       }
       
     }

@@ -15,13 +15,14 @@ class End extends StartS
       fill(255,0,0);
       text("Score: "+ points, width/2 - 150, height / 2);
       
-      tipping = false;
-      move = false;
-      
       for(Player player:players)
       {
         player.update();
       }
+
+      tipping = false;
+      move = false;
+      
     }
   }  
 }

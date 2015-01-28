@@ -1,3 +1,5 @@
+import ddf.minim.*;
+
 ArrayList<Player> players = new ArrayList<Player>();
 boolean[] keys = new boolean[526];
 
@@ -8,6 +10,9 @@ Harpoon harpoon;
 End end;
 Score score;
 Instruct instruct;
+
+AudioPlayer player, player2;
+Minim minim, minim2;//audio context
 
 boolean left;
 boolean right;
@@ -23,7 +28,6 @@ PImage sky;
 int points;
 boolean move;
 int option;
-
 
 void setup()
 {
@@ -43,20 +47,24 @@ void setup()
   points = 0;
   option = 0;
   
+  minim = new Minim(this);
+  player = minim.loadFile("limewire.mp3");
+  player2 = minim.loadFile("mon.mp3");
+  player.loop();  
 }
 
 void draw()
 {
   if(startS.go == false)
   {
-    frameRate(10);
+    frameRate(10);//Limit the frames so it oesnt speed through the ption menu
     startS.display();    
     for(Player player:players)
     {
       player.update();
     }
 
-    if(option < 0)
+    if(option < 0)//So the option selector stays on screen
     {
       option = 0;
     }
@@ -66,16 +74,16 @@ void draw()
     }
     
   }
-  else if(end. go == true)
+  else if(end. go == true)//end screen
   {
     end.display();
   }
-  else if(option == 1)
+  else if(option == 1)//to view the instruction
   {
     instruct.go = true;
     instruct.display();
   }
-  else if(option == 0 || option == 2)
+  else if(option == 0 || option == 2)//Options that play the game
   {  
     frameRate(60);
     background(255);
@@ -100,13 +108,13 @@ void draw()
       player.pos.y = 20;   
     }
     
-    if(left == true)
+    if(left == true)//Harpoon thrown right
     {
       harpoon.hx = harpoon.hx + 2;
       image(harpoon.harpoonR, harpoon.hx, harpoon.hy);
     }
     
-    if(right == true)
+    if(right == true)//Harpoon thrown right
     {
       harpoon.hx = harpoon.hx - 2;
       image(harpoon.harpoonL, harpoon.hx, harpoon.hy);
@@ -176,4 +184,9 @@ void setUpPlayerControllers()
     p.pos.y = 20;
    players.add(p);       
   }
+}
+
+void reload()//Reload the monsters sound after using it
+{
+  player2 = minim.loadFile("mon.mp3");
 }

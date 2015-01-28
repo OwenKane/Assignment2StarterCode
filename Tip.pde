@@ -57,8 +57,7 @@ class Tip
           }
        }
        
-       passedTime = millis() - savedTime;
-     
+       passedTime = millis() - savedTime;    
        if (passedTime > totalTime) 
        {
          side = random(0, 2);
@@ -74,18 +73,22 @@ class Tip
            wait = false;
            attleft = false;
            attright = false;
+           reload();
          } 
        }  
+       
               
        if(side < 1 && attright == true)
        {
-         i = i + .4;
+         i = i + .3;
          image(monster, -210, -55);
+         player2.play();
        }
        else if(side > 1 && attleft == true)
        {
-         i = i - .4;
+         i = i - .3;
          image(monster2, 130, -55);
+         player2.play();
        }
             
        if(side < 1 && attack == true)

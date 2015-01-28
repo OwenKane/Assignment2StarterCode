@@ -18,11 +18,4 @@ class Screens
     }
   }
   
-  void mouseClicked()
-  {
-    start = true;
-    println("in mouse clicked");
-    
-  }
-  
 }

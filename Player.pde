@@ -11,11 +11,16 @@ class Player
   int index;
   color colour;
   PImage pirate;
+  PImage pirateL;
+  PImage pirateR;
+  boolean pirateW;
     
   Player()
   {
     pos = new PVector(0, 0);
     pirate = loadImage("pirate.png"); 
+    pirateR = loadImage("pirateR.png"); 
+    pirateL = loadImage("pirateL.png"); 
   }
   
   Player(int index, color colour, char up, char down, char left, char right, char start, char button1, char button2)
@@ -61,6 +66,8 @@ class Player
       if(move == true)
       {
         pos.x += 1;
+        image(pirateL, pos.x, pos.y);//Pirate walking left
+        pirateW = true;
       } 
       else
       {
@@ -72,6 +79,8 @@ class Player
       if(move == true)
       {   
         pos.x -= 1;
+        image(pirateR, pos.x, pos.y);//Pirate walking right
+        pirateW = true;
       }
       else
       {
@@ -87,7 +96,7 @@ class Player
         option = 0;
       }
       
-      if(instruct.go == false)
+      if(instruct.go == false && end.go == false)
       {
         startS.restart();    
       }
@@ -95,12 +104,13 @@ class Player
       if(end.go == true)
       {
         points = 0;
-        end.go = false;   
+        end.go = false;  
+
         tip.savedTime = millis(); 
-        //startS.restart();    
-        startS.go = false;        
+    
+        startS.go = true;        
       }
-      
+
     }
     if (checkKey(button1))
     {      
@@ -117,6 +127,10 @@ class Player
     stroke(colour);
     fill(colour);  
     scale(1.0, -1.0);
-    image(pirate, pos.x, pos.y - 80);
+    if(pirateW == false)
+    {
+      image(pirate, pos.x, pos.y - 80);//The default stance when not walking
+    }
+    pirateW = false;
   }  
 }

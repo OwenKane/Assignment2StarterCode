@@ -17,7 +17,7 @@ class StartS
       tipping = false;
       textSize(32);
       
-      if(option == 0)
+      if(option == 0)//Changes the colour of the title that the user is currently over
       {
         fill(#d9da02);
       }
@@ -54,7 +54,6 @@ class StartS
       fill(0);
       textSize(32);
       text("Hard", 645, height / 2 - 30);
-      
     }
   }
  

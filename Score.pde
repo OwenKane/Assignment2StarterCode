@@ -14,10 +14,10 @@ class Score
   {
     passedTime = second() - savedTime;
    
-    if (passedTime > totalTime) 
+    if (passedTime > totalTime)//Addes 1 to point every 2 seconds
     {
       points = points + 1;
-      savedTime = second(); // Save the current time to restart the timer!
+      savedTime = second(); // Save the current time to restart the timer
     }   
   }
 }
